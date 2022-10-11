@@ -34,4 +34,9 @@ class ListaAlunoMatriculadosSerializer(serializers.ModelSerializer):
     aluno_nome = serializers.ReadOnlyField(source='alunos.nome')
     class Meta:
         model = Matricula
-        fields = ['aluno_nome']
+        fields = ['aluno_nome']  
+        
+class AlunoSerializerV2(serializers.ModelSerializer):
+    class Meta:
+        model = Aluno
+        fields = ['id', 'nome', 'celular', 'rg', 'cpf', 'data_nascimento']
