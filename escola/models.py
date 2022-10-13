@@ -7,6 +7,7 @@ class Aluno(models.Model):
     cpf = models.CharField(max_length=11) #Campos
     data_nascimento = models.DateField() #Campos
     celular = models.CharField(max_length=11, blank=True, null=True) #Campos
+    foto = models.ImageField(blank=True) #Campos
 
     def __str__(self):
         return self.nome
