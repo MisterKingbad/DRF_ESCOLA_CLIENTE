@@ -38,12 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'escola'
+    'escola',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -125,12 +127,26 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-        'rest_framework.permissions.DjangoModelPermissions',
+    # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    #     'rest_framework.permissions.DjangoModelPermissions',
+    # ],
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     'rest_framework.authentication.BasicAuthentication',    
+    # ],
+    'DEFAULT_THRORRLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
     ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',    
-    ],
+    'DEFAULT_THRORRLE_RATES': {
+        'anon': '/day',
+    },
+
 }
+
+CORS_ALLOWED_ORIGINS = [
+    # "https://example.com",
+    # "https://sub.example.com",
+    "http://localhost:3000",
+    # "http://127.0.0.1:9000"
+]
