@@ -2,6 +2,8 @@ from rest_framework import viewsets, generics
 from escola.models import Aluno, Curso, Matricula
 from escola.serializer import AlunoSerializer, AlunoSerializerV2, CursoSerializer, MatriculaSerializer, ListaMatriculasAlunoSerializer,ListaAlunoMatriculadosSerializer
 from rest_framework.response import Response
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 class AlunosViewsSet(viewsets.ModelViewSet):
         """Exibindo todos os alunas e alunas"""
@@ -31,6 +33,11 @@ class MatriculasViewsSet(viewsets.ModelViewSet):
         queryset = Matricula.objects.all()
         serializer_class = MatriculaSerializer
         http_method_names = ['get', 'post', 'put', 'path'] #Métodos que serão exibidos
+        
+        @method_decorator(cache_page(20)) #Cache de 20 segundos
+        def dispatch(self, *args, **kwargs): 
+            return super(MatriculasViewsSet, self).dispatch(*args, **kwargs) 
+        
 
 class ListaMatriculasAluno(generics.ListAPIView):
         """Listando as matriculas de um aluno(a)"""
