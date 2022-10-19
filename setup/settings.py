@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-axmt=pr1aler5*uatl1a3nhn4rb-xk5hm0f=@ckcn9)3@7+#ni
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost"]
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'escola',
     'corsheaders',
+    'admin_honeypot',
 ]
 
 MIDDLEWARE = [
@@ -150,10 +151,7 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    # "https://example.com",
-    # "https://sub.example.com",
     "http://localhost:3000",
-    # "http://127.0.0.1:9000"
 ]
 
 CACHES = {
