@@ -4,5 +4,8 @@
         "Matricula",
         "Matriculados",
         "periodo"
+    ],
+    "conventionalCommits.scopes": [
+        "Teste"
     ]
 }
