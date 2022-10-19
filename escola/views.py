@@ -18,6 +18,7 @@ class CursosViewset(viewsets.ModelViewSet):
         """Ëxibindo todos os cursos"""
         queryset = Curso.objects.all()
         serializer_class = CursoSerializer
+        http_method_names = ['get', 'post', 'put', 'patch' ] # Lista de métodos que serão aceitos
         
         def create(self, request): 
                 serializer = self.serializer_class(data=request.data)
